@@ -13,7 +13,6 @@ class CreateAccount extends Component{
 
 
   onInputName = (event) => {
-    console.log(event.target.value)
     this.setState({name: event.target.value})
   }
 
@@ -25,6 +24,8 @@ class CreateAccount extends Component{
     this.setState({password: event.target.value})
   }
 
+
+
   onSubmitSignUp = () => {
     fetch('http://localhost:3001/register', {
       method: 'post',
@@ -35,6 +36,7 @@ class CreateAccount extends Component{
         password: this.state.password
       })
     })
+    console.log(this.state)
     this.props.onRouteChange('signin')
   }
 
@@ -77,7 +79,7 @@ class CreateAccount extends Component{
                                 type="password"
                                 name="password"
                                 id="password"
-                                onChange={this.onPasswordChange}
+                                onChange={this.onInputPassword}
                                 required
                               />
                           </div>
@@ -101,5 +103,6 @@ class CreateAccount extends Component{
     );
   }
 }
+
 
 export default CreateAccount;

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import SignOut from '../signout/Signout.component.jsx';
-import CardList from '../card/CardList.component.jsx';
-import { credentials } from '../credentials.js';
+import CardList from '../card/CardList.component';
+import Navigation from '../navigation/navigation.component';
+import SearchBox from '../searchbox/Searchbox.component';
+import './homepage.style.scss';
 
 
 
@@ -9,45 +10,32 @@ class Homepage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      credential: credentials,
       searchfield: '',
-      // database: data,
     }
   }
 
   onInputChange = (event) => {
     this.setState({searchfield: event.target.value})
-    // console.log(event.target.value);
   }
 
-  // async componentDidMount(){
-  //   console.log(this.state)
-  //    await fetch('http://localhost:3001/credentials')
-  //   .then(response => response.json())
-  //   .then(data =>
-  //     this.setState({
-  //       database: data,
-  //     })
-  //   )
-  //   .catch(error => console.log(error))
-  // }
 
   render(){
-    const {onRouteChange} = this.props;
 
-    const filteredCredentials = this.state.credential.filter(item => {
-      return item.platform.toLowerCase().includes(this.state.searchfield.toLowerCase());
-    })
+    // const filteredCredentials = this.state.credential.filter(item => {
+    //   return item.platform.toLowerCase().includes(this.state.searchfield.toLowerCase());
+    // })
 
     let display;
     (this.state.searchfield.length === 0) ?
     display = <p></p>
-    : display = <CardList credentials={filteredCredentials} />
+    : display = <CardList 
+    // credentials={filteredCredentials}
+    />
 
     return(
-      <div className="mt1">
-        <SignOut style={{paddingRight: '20px'}} onRouteChange={onRouteChange} />
-        <input onChange={this.onInputChange} style={{marginLeft: '10%'}} className="br3 w-40 pa2" type="text" placeholder="Search" />
+      <div className="mt0">
+        <Navigation username={this.props.loaduser} onRouteChange={this.props.onRouteChange} style={{opacity: '0.7'}} className="mt0"/>
+        <SearchBox style={{marginTop: '60'}} className="" />
         {display}
       </div>
     );

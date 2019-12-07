@@ -17,7 +17,9 @@ class SignIn extends Component{
     this.setState({signInPassword: event.target.value})
   }
 
+
   onSubmitSignIn = () => {
+    const { loadUser } = this.props;
     fetch('http://localhost:3001/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
@@ -27,14 +29,19 @@ class SignIn extends Component{
       })
     })
     .then(response => response.json())
-    .then(response => {
-      (response === 'true') ? this.props.onRouteChange('home')
-      : this.props.onRouteChange('signin')
+    .then(user => {
+      if(user.id) {
+        loadUser(user);
+        console.log(user);
+        this.props.onRouteChange('home');
+      } else {
+        alert('Invalid username or password')
+      }
     })
   }
 
   render(){
-    const {onRouteChange} = this.props;
+    const { onRouteChange } = this.props;
     return(
       <div className="mt6">
           <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l shadow-5 mw6 center bg-white fw6">
