@@ -60,7 +60,7 @@ class App extends Component{
         {
           (this.state.route === 'signin') ? <SignIn loadUser = {this.loadUser} onRouteChange={this.onRouteChange}/>
         : (this.state.route === 'register') ? <CreateAccount onRouteChange={this.onRouteChange}/>
-        : (this.state.route === 'home') ? <Homepage loaduser={this.state.user.name} onRouteChange={this.onRouteChange}/>
+        : (this.state.route === 'home') ? <Homepage loadUserId={this.state.user.id} loaduser={this.state.user.name} onRouteChange={this.onRouteChange}/>
         : (this.state.route === 'saveit') ? <SaveIt userid={this.state.user.id} onRouteChange={this.onRouteChange} />
         : <div></div>
         }

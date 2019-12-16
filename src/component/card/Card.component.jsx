@@ -29,7 +29,7 @@ class Card extends Component{
               {
                 !this.state.isHidden &&
                 <Article
-                  username={this.props.username}
+                  username={this.props.platform}
                   email={this.props.email}
                   password={this.props.password}
                   className="shadow-4"

@@ -31,8 +31,8 @@ class SaveIt extends Component{
     }
 
     onSubmitSave = () => {
-        let id = this.props.userid;
-        console.log('id');
+        const id = this.props.userid;
+        console.log(id);
         fetch('http://localhost:3001/store', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
